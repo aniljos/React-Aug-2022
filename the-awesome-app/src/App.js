@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Hello from './components/Hello';
 import Counter from './components/Counter';
+import ListProducts from './components/ListProducts';
 
 
 function App() {
@@ -25,8 +26,10 @@ function App() {
           {/* <Hello message="Hello World" color="blue"/>
           <Hello message="Namaste" color="slateblue"/> */}
 
-          <Counter initCount={5}/>
-          <Counter initCount={10}/>
+          {/* <Counter initCount={5}/>
+          <Counter initCount={10}/> */}
+
+          <ListProducts/>
           
       </main>
     </div>
