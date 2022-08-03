@@ -1,20 +1,24 @@
 import {Component} from 'react';
 import axios from 'axios';
+import './ListProducts.css';
+import EditProduct from './EditProduct';
 
 class ListProducts extends Component{
 
-
+    //immutable
     state = {
-        products: []
+        products: [],
+        selectedProduct: null
     };
+    url = "http://localhost:9000/products";
 
     async componentDidMount(){
        
-        const url = "http://localhost:9000/products";
+        //const url = "http://localhost:9000/products";
 
         try {
             
-            const response = await axios.get(url);
+            const response = await axios.get(this.url);
             console.log("response", response);
             this.setState({
                 products: response.data
@@ -28,25 +32,70 @@ class ListProducts extends Component{
         
         
     }
+
+    deleteProduct = async (product, index) => {
+        //alert("deleteing product id: " +  product.id);
+        const url = this.url + "/" + product.id;
+
+        try {
+            
+            await axios.delete(url);
+            //copy of the state.products
+            const products = [...this.state.products];
+            //modify the copy
+            products.splice(index, 1);
+            //update the state
+            this.setState({
+                products
+            });
+
+
+            alert("deleted product id: " +  product.id);
+
+        } catch (error) {
+
+            alert("failed to delete product id: " +  product.id);
+        }
+    }
+
+    editProduct = (product) => {
+
+        this.setState({
+            selectedProduct: product
+        })
+    }
+
     render(){
 
         return (
             <div>
                 <h3>List Products</h3>
 
-                <div>
+                <div style={{display: 'flex', flexFlow: 'row wrap', justifyContent: 'center'}}>
                     {this.state.products.map((product, index) => {
 
                         return (
-                            <div key={product.id}>
+                            <div className='product' key={product.id}>
                                 <p>Id: {product.id}</p>
                                 <p>Name: {product.name}</p>
                                 <p>Description: {product.description}</p>
                                 <p>Price: {product.price}</p>
+                                <div>
+                                    <button onClick={() => {this.editProduct(product)}}>Edit</button> &nbsp;
+                                    <button onClick={() => {this.deleteProduct(product, index);}}>Delete</button>
+                                </div>
+
                             </div>
 
                         )
                     })}
+                </div>
+
+                <div>
+                    {this.state.selectedProduct !== null ? 
+                                <EditProduct key={this.state.selectedProduct.id} 
+                                                product={this.state.selectedProduct}/> 
+                                : null}
                 </div>
             </div>
         )
