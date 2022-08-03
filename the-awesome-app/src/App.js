@@ -3,6 +3,7 @@ import './App.css';
 import Hello from './components/Hello';
 import Counter from './components/Counter';
 import ListProducts from './components/ListProducts';
+import Search from './components/Search';
 
 
 function App() {
@@ -29,7 +30,9 @@ function App() {
           {/* <Counter initCount={5}/>
           <Counter initCount={10}/> */}
 
-          <ListProducts/>
+          {/* <ListProducts/> */}
+
+          <Search/>
           
       </main>
     </div>

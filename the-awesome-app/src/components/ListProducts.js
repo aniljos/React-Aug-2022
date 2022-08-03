@@ -1,9 +1,9 @@
-import {Component} from 'react';
+import {Component, PureComponent} from 'react';
 import axios from 'axios';
 import './ListProducts.css';
 import EditProduct from './EditProduct';
 
-class ListProducts extends Component{
+class ListProducts extends PureComponent{
 
     //immutable
     state = {
@@ -65,19 +65,39 @@ class ListProducts extends Component{
         })
     }
 
-    editUpdate = (updatedProduct)=> {
+    editUpdate = async (updatedProduct)=> {
 
         console.log("updatedProduct", updatedProduct)
+        try {
+            
+            const url = this.url + "/" + updatedProduct.id;
+            await axios.put(url, updatedProduct);
+            const response = await axios.get(this.url);
+            this.setState({
+                products: response.data,
+                selectedProduct: null
+            });
+            alert("updated")
+            
+
+        } catch (error) {
+            alert("failed to update")
+        }
+
 
     }
 
     editCancel = ()=> {
 
-        console.log("editCancel")
+        console.log("editCancel");
+        this.setState({
+            selectedProduct: null
+        })
     }
 
     render(){
 
+        console.log("[ListProducts render]")
         return (
             <div>
                 <h3>List Products</h3>

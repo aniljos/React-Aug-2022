@@ -71,7 +71,7 @@ class EditProduct extends Component{
                 </div>
                 <div>
                     <label>Price</label>
-                    <input placeholder="Price" value={this.state.currentProduct.price} 
+                    <input type="number" placeholder="Price" value={this.state.currentProduct.price} 
                                                                     onChange={this.changePrice}/>
                 </div>
                 <div>
