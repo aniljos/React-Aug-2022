@@ -65,6 +65,17 @@ class ListProducts extends Component{
         })
     }
 
+    editUpdate = (updatedProduct)=> {
+
+        console.log("updatedProduct", updatedProduct)
+
+    }
+
+    editCancel = ()=> {
+
+        console.log("editCancel")
+    }
+
     render(){
 
         return (
@@ -94,7 +105,9 @@ class ListProducts extends Component{
                 <div>
                     {this.state.selectedProduct !== null ? 
                                 <EditProduct key={this.state.selectedProduct.id} 
-                                                product={this.state.selectedProduct}/> 
+                                                product={this.state.selectedProduct}
+                                                onSave={this.editUpdate}
+                                                onCancel={this.editCancel}/> 
                                 : null}
                 </div>
             </div>

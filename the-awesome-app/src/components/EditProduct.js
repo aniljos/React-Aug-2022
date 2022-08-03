@@ -51,6 +51,14 @@ class EditProduct extends Component{
         });
     }
 
+    save = () => {
+        this.props.onSave(this.state.currentProduct);
+    }
+
+    cancel = () => {
+        this.props.onCancel();
+    }
+
     render(){
         return (
             <div>
@@ -73,8 +81,8 @@ class EditProduct extends Component{
                 </div>
 
                 <div>
-                    <button>Save</button>
-                    <button>Cancel</button>
+                    <button onClick={this.save}>Save</button>
+                    <button onClick={this.cancel}>Cancel</button>
                 </div>
             </div>
         )
