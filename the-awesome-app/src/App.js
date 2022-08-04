@@ -5,6 +5,7 @@ import Counter from './components/Counter';
 import ListProducts from './components/ListProducts';
 import Search from './components/Search';
 import Login from './components/Login';
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 function App(){
@@ -39,12 +40,15 @@ function App(){
           <main>
                 <Routes>
                   <Route path='/home' element={<Hello message="Hello World" color="blue"/>}/>
-                  <Route path='/products' element={<ListProducts/>}/>
+                  <Route path='/products' element={<ProtectedRoute> <ListProducts/> </ProtectedRoute>}/>
                   <Route path='/counter' element={<Counter initCount={5}/>}/>
                   <Route path='/search' element={<Search/>}/>
                   <Route path='/login' element={<Login/>}/>
                 </Routes>
           </main>
+          <div>
+            <p></p>
+          </div>
       </div>
     </Router>
   )
