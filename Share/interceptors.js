@@ -1,11 +1,14 @@
 import axios from 'axios';
-import {store} from '../redux/store';
+import {store} from './redux/store';
 
 axios.interceptors.request.use((config) => {
 
+    const loginUrl = "http://localhost:9000/login";
+    if(config.url !== loginUrl){
+        const state = store.getState();
+        config.headers.Authorization = `Bearer ${state.auth.accessToken}`;
+    }
     
-    const state = store.getState();
-    config.headers.Authorization = `Bearer ${state.auth.accessToken}`;
     return config;
 
 })
