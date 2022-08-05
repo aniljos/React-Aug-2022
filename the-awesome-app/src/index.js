@@ -7,6 +7,11 @@ import { store } from "./redux/store";
 import { Provider } from "react-redux";
 import AppErrorBoundary from "./components/AppErrorBoundary";
 
+//Axios interceptors
+import './interceptors/interceptor';
+
+
+
 //react 17
 
 // ReactDOM.render(<React.StrictMode>

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 function GadgetStore(){
 
     const [products, setProducts] = useState([]);
     const dispatch = useDispatch();
+    const auth = useSelector(state => state.auth);
 
 
     useEffect(() => {
@@ -15,7 +16,9 @@ function GadgetStore(){
     async function fetchProducts(){
         try {
             
-            const url = "http://localhost:9000/products"
+            const url = "http://localhost:9000/secure_products"
+            // const headers = {"Authorization": `Bearer ${auth.accessToken}`}
+            // const response = await axios.get(url, {headers} );
             const response = await axios.get(url);
             setProducts(response.data);
 

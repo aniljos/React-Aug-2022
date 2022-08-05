@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {BrowserRouter as Router, Link, Routes, Route} from 'react-router-dom';
 import Hello from './components/Hello';
-import Counter from './components/Counter';
+
 import ListProducts from './components/ListProducts';
 import Search from './components/Search';
 import Login from './components/Login';
@@ -9,7 +9,11 @@ import ProtectedRoute from './components/ProtectedRoute';
 import GadgetStore from './components/GadgetStore';
 import ViewCart from './components/ViewCart';
 import HooksDemo from './components/HooksDemo';
+import React, { Suspense } from 'react';
 
+//import Counter from './components/Counter';
+
+const Counter = React.lazy(() => import('./components/Counter'));
 
 function App(){
   return (
@@ -50,6 +54,7 @@ function App(){
           </nav>
 
           <main>
+            <Suspense fallback="Loading...">
                 <Routes>
                   <Route path='/home' element={<Hello message="Hello World" color="blue"/>}/>
                   <Route path='/products' element={<ProtectedRoute> <ListProducts/> </ProtectedRoute>}/>
@@ -60,6 +65,7 @@ function App(){
                   <Route path='/cart' element={<ViewCart/>}/>
                   <Route path='/hooks' element={<HooksDemo/>}/>
                 </Routes>
+              </Suspense>
           </main>
           <div>
             <p></p>
