@@ -6,6 +6,9 @@ import ListProducts from './components/ListProducts';
 import Search from './components/Search';
 import Login from './components/Login';
 import ProtectedRoute from './components/ProtectedRoute';
+import GadgetStore from './components/GadgetStore';
+import ViewCart from './components/ViewCart';
+import HooksDemo from './components/HooksDemo';
 
 
 function App(){
@@ -33,6 +36,15 @@ function App(){
                         <li className="nav-item">
                           <Link className="nav-link"  to="/login">Login</Link>
                         </li>
+                        <li className="nav-item">
+                          <Link className="nav-link"  to="/gadgets">Gadgets</Link>
+                        </li>
+                        <li className="nav-item">
+                          <Link className="nav-link"  to="/cart">ViewCart</Link>
+                        </li>
+                        <li className="nav-item">
+                          <Link className="nav-link"  to="/hooks">Hooks Demo</Link>
+                        </li>
                     </ul>
                 </div>
           </nav>
@@ -44,6 +56,9 @@ function App(){
                   <Route path='/counter' element={<Counter initCount={5}/>}/>
                   <Route path='/search' element={<Search/>}/>
                   <Route path='/login' element={<Login/>}/>
+                  <Route path='/gadgets' element={<GadgetStore/>}/>
+                  <Route path='/cart' element={<ViewCart/>}/>
+                  <Route path='/hooks' element={<HooksDemo/>}/>
                 </Routes>
           </main>
           <div>

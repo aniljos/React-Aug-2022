@@ -1,10 +1,13 @@
 import {Navigate} from 'react-router-dom';
+import {useSelector} from 'react-redux';
 
 function ProtectedRoute(props){
 
-    const isAuth = sessionStorage.getItem("isAuth");
+    const auth = useSelector((state) => {return state.auth} );
 
-    if(isAuth && isAuth === "true"){
+    //const isAuth = sessionStorage.getItem("isAuth");
+
+    if(auth && auth.isAuth){
 
         // props.children is the inner HTML
         return props.children;
